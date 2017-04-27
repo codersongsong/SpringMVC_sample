@@ -83,6 +83,17 @@
                 <groupId>org.eclipse.jetty</groupId>
                 <artifactId>jetty-maven-plugin</artifactId>
                 <version>9.0.6.v20130930</version>
+                <configuration>
+                    <webAppConfig>
+                        <contextPath>/</contextPath>
+                        <defaultsDescriptor>src/main/resources/webdefault.xml</defaultsDescriptor>
+                    </webAppConfig>
+                    <httpConnector>
+                        <port>9091</port>
+                        <idleTimeout>60000</idleTimeout>
+                    </httpConnector>
+                    <scanIntervalSeconds>5</scanIntervalSeconds>
+                </configuration>
             </plugin>
         </plugins>
     </build>
