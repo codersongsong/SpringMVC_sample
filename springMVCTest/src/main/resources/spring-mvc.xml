@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:aop="http://www.springframework.org/schema/aop"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans
-                        http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
-                         http://www.springframework.org/schema/context
-                        http://www.springframework.org/schema/context/spring-context-3.2.xsd
-                        http://www.springframework.org/schema/mvc
-                        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+       xsi:schemaLocation="http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/util
+		http://www.springframework.org/schema/util/spring-util-3.1.xsd
+		http://www.springframework.org/schema/mvc
+		http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd">
     <!--启用spring的一些annotation -->
     <context:annotation-config/>
+
+    <!--加载 properties 文件配置-->
+    <util:properties id="paramRule" location="classpath:ParamRule.properties"/>
 
     <!-- 自动扫描该包，使SpringMVC认为包下用了@controller注解的类是控制器 -->
     <context:component-scan base-package="com.test.controller">
@@ -47,4 +56,15 @@
         <property name="defaultEncoding" value="UTF-8"/>
         <property name="resolveLazily" value="true"/>
     </bean>
+    
+    <mvc:interceptors>
+        <mvc:interceptor>
+
+            <mvc:mapping path="/main/aa.do"/>
+            <mvc:mapping path="/main/bb.do"/>
+            <mvc:mapping path="/main/cc.do"/>
+            <mvc:mapping path="/main/home.do"/>
+            <bean class="cn.com.gome.web.interceptor.ParamHandlerInterceptor" />
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>
