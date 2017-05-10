@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class GuavaCache {
 
-
+    //http://www.majiang.life/blog/simple-in-memory-cache-in-java/?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io
     public static void main(String[] args) {
 
         LoadingCache<String, Optional<String>> loadingCache = CacheBuilder
